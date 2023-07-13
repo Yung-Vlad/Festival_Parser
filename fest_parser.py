@@ -138,14 +138,13 @@ def repeatability_check(name):
 
 # return the src code
 def using_selenium(url):
-    options = Options()
+    options = webdriver.ChromeOptions()
     options.add_argument("--headless")
-    driver = webdriver.Chrome(options=options)
-    driver.get(url=url)
-
-    sleep(1)
-    src = driver.page_source
-    driver.quit()
+    with webdriver.Chrome(options=options) as driver:
+        driver.get(url=url)
+    
+        sleep(1)
+        src = driver.page_source
 
     return src
 
